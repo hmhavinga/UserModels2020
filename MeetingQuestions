@@ -1,2 +1,4 @@
 Week 1
 - Hoe kunnen we makkelijk samenwerken met OpenSesame / hoe delen we makkelijk de python code die we gebruiken in OpenSesame?
+
+- Waarom word in get_next_fact het woord wat net is laten zien eruit gehaald? (Dus directe repititie is niet mogelijk, alleen als er minder dan 3 woorden zijn om uit te kiezen)
