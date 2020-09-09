@@ -1,0 +1,9 @@
+Ideas:
+
+1. Infrequent feedback: To lessen reliance on hints (moral hazard). When to give hints can be personalized, based on activation/reaction time
+
+2. Gamification: Mind palace theory, placing words in a 3d room.
+
+3. Visuele feedback and audio feedback
+
+4. 
