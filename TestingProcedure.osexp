@@ -1,0 +1,187 @@
+---
+API: 2.1
+OpenSesame: 3.3.4a9
+Platform: nt
+---
+set width 1024
+set uniform_coordinates yes
+set title "New experiment"
+set subject_parity even
+set subject_nr 0
+set start experiment
+set sound_sample_size -16
+set sound_freq 48000
+set sound_channels 2
+set sound_buf_size 1024
+set sampler_backend psycho
+set round_decimals 2
+set mouse_backend psycho
+set keyboard_backend psycho
+set height 768
+set fullscreen no
+set form_clicks no
+set foreground black
+set font_underline no
+set font_size 24
+set font_italic no
+set font_family sans
+set font_bold no
+set experiment_path "H:/Users/Hanna/Documents/Uni/Master/User Models/OS"
+set disable_garbage_collection yes
+set description "The main experiment item"
+set coordinates uniform
+set compensation 0
+set color_backend psycho
+set clock_backend psycho
+set canvas_backend psycho
+set background white
+
+define sketchpad End
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="This is the end of the experiment, thank you for participating!<br />Please mail your results to: ...<br />Press any key to exit." x=0 y=0 z_index=0
+
+define sketchpad Instructions
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=black font_bold=no font_family=sans font_italic=no font_size=24 html=yes show_if=always text="Give the English translation of the Finnish word!<br />Press any key to continue." x=0 y=0 z_index=0
+
+define inline_script QA
+	set description "Executes Python code"
+	___run__
+	trial_start_time = clock.time()
+	
+	# Get next fact from table
+	prompt = var.question
+	answer = var.answer
+	
+	# Show prompt
+	my_canvas = Canvas()
+	my_canvas.text(prompt, y = -100, font_size = 30)
+	my_canvas.prepare()
+	my_canvas.show()
+	
+	# Listen for keyboard input and show keypresses on screen as they occur
+	my_keyboard = Keyboard()
+	keyboard_response = ""
+	erased_answer = False
+	rt = float("inf")
+	
+	# Keep listening for key presses until the user presses Enter
+	while True:
+		key, time = my_keyboard.get_key()
+		
+		# The first keypress determines the response time
+		if keyboard_response == "" and not erased_answer:
+			var.rt = clock.time() - trial_start_time
+		
+		if key == "return":
+			break
+			
+		if key == "backspace":
+			keyboard_response = keyboard_response[:-1]
+			# If the answer is completely erased, the RT is no longer informative
+			if keyboard_response == "":
+				erased_answer = True
+				rt = float("inf")
+		
+		elif key == "space":
+			keyboard_response += " "
+		
+		else:
+			keyboard_response += my_keyboard.to_chr(key)
+	
+		# Update what's on screen'
+		my_canvas.clear()
+		my_canvas.text(prompt, y = -100, font_size = 30)
+		my_canvas.text(keyboard_response, y = 100)
+		my_canvas.prepare()
+		my_canvas.show()
+	
+	
+	# Check if the response is correct
+	var.key_response = keyboard_response
+	var.correct = keyboard_response == answer
+	
+	
+	# Clear the screen between trials
+	my_canvas.clear()
+	my_canvas.prepare()
+	my_canvas.show()
+	clock.sleep(500)
+	__end__
+	set _prepare ""
+
+define loop block_loop
+	set source_file ""
+	set source table
+	set repeat 1
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 3
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 question maison
+	setcycle 0 answer house
+	setcycle 0 hint 1
+	setcycle 0 long 1
+	setcycle 1 question chat
+	setcycle 1 answer cat
+	setcycle 1 hint 0
+	setcycle 1 long 0
+	setcycle 2 question skoll
+	setcycle 2 answer cheers
+	setcycle 2 hint 1
+	setcycle 2 long 0
+	run trial
+
+define sequence experiment
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run Instructions always
+	run block_loop always
+	run End always
+
+define notepad getting_started
+	__note__
+	Welcome to OpenSesame 3.3 "Lentiform Loewenfeld"!
+	If you are new to OpenSesame, it is a good idea to follow one of the tutorials,
+	which can be found on the documentation site:
+	- <http://osdoc.cogsci.nl/>
+	You can also check out the examples. These can be opened via:
+	- Menu -> Tools -> Example experiments.
+	And feel free to ask for help on the forum:
+	- <http://forum.cogsci.nl/>
+	Have fun with OpenSesame!
+	__end__
+	set description "A simple notepad to document your experiment. This plug-in does nothing."
+
+define logger logger
+	set description "Logs experimental data"
+	set auto_log no
+	log question
+	log answer
+	log correct
+	log rt
+	log count_trial
+	log subject_nr
+	log time_QA
+	log title
+	log key_response
+	log hint
+	log long
+
+define sequence trial
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run QA always
+	run logger always
+
+define sketchpad welcome
+	set start_response_interval no
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=32 html=yes show_if=always text="OpenSesame 3.3 <i>Lentiform Loewenfeld</i>" x=0 y=0 z_index=0
+
