@@ -194,7 +194,7 @@ define inline_script learning_session1_setup
 	var.trial_num = 1
 	
 	# Settings
-	var.session_duration = 10000
+	var.session_duration = 60000
 	var.feedback_duration = 1200
 	var.inter_trial_interval = 200
 	
@@ -217,7 +217,7 @@ define inline_script learning_session2_setup
 	var.trial_num = 1
 	
 	# Settings
-	var.session_duration = 10000
+	var.session_duration = 100
 	var.feedback_duration = 1200
 	var.inter_trial_interval = 200
 	
@@ -260,6 +260,7 @@ define inline_script present_trial
 	else:
 	    level = 5
 	
+	
 	hint = next_fact.hint
 	hint_cost = level *5
 	hint_message = "Enter 1 to buy hint (which costs "+ str(hint_cost)+ " points)"
@@ -285,8 +286,11 @@ define inline_script present_trial
 	#show_screen(prompt, points, level, hint_message, new, answer)
 	my_canvas.text(prompt, y = -100, font_size = 30)
 	#Coordinates: (0,0) is midden
-	my_canvas.text(str(points)+" points", x = 350, y = -350, font_size = 30)
-	my_canvas.text("level " + str(level), x = 350, y = -300, font_size = 30)
+	my_canvas.rect(99,-361 ,402, 22, color='black', fill = False)
+	points_in_level = points - (level-1)*400
+	my_canvas.rect(100,-360 ,points_in_level, 20, color='green', fill = True)
+	my_canvas.text(str(points)+" points", x = 350, y = -300, font_size = 30)
+	my_canvas.text("level " + str(level), x = 350, y = -250, font_size = 30)
 	if new:
 		my_canvas.text(answer, y = -60, font_size = 20)
 	else:
@@ -327,8 +331,8 @@ define inline_script present_trial
 		# Update what's on screen
 		my_canvas.clear()
 		my_canvas.text(prompt, y = -100, font_size = 30)
-		my_canvas.text(str(points)+" points", x = 350, y = -350, font_size = 30)
-		my_canvas.text("level " + str(level), x = 350, y = -300, font_size = 30)	
+		my_canvas.text(str(points)+" points", x = 350, y = -300, font_size = 30)
+		my_canvas.text("level " + str(level), x = 350, y = -250, font_size = 30)	
 		if new:
 			my_canvas.text(answer, y = -60, font_size = 20)
 		else:
@@ -352,9 +356,9 @@ define inline_script present_trial
 		my_canvas.clear()
 		my_canvas.text(prompt, y = -100, font_size = 30)
 		points = points - hint_cost
-		my_canvas.text(str(points)+" points", x = 350, y = -350, font_size = 30)
+		my_canvas.text(str(points)+" points", x = 350, y = -300, font_size = 30)
 		my_canvas.text("You lost "+ str(hint_cost) + " points by buying a hint", x = 0, y = 0, color = "red")
-		my_canvas.text("level " + str(level), x = 350, y = -300, font_size = 30)
+		my_canvas.text("level " + str(level), x = 350, y = -250, font_size = 30)
 		my_canvas.text(hint, y = -60, font_size = 20)
 		my_canvas.prepare()
 		my_canvas.show()
@@ -392,8 +396,8 @@ define inline_script present_trial
 			# Update what's on screen'
 			my_canvas.clear()
 			my_canvas.text(prompt, y = -100, font_size = 30)
-			my_canvas.text(str(points)+" points", x = 350, y = -350, font_size = 30)
-			my_canvas.text("level " + str(level), x = 350, y = -300, font_size = 30)
+			my_canvas.text(str(points)+" points", x = 350, y = -300, font_size = 30)
+			my_canvas.text("level " + str(level), x = 350, y = -250, font_size = 30)
 			my_canvas.text(hint, y = -60, font_size = 20)
 			my_canvas.text(keyboard_response, y = 100)
 			my_canvas.prepare()
@@ -409,8 +413,8 @@ define inline_script present_trial
 	# Show feedback
 	feedback_color = "green" if correct else "red"
 	my_canvas.text(keyboard_response, y = 100, color = feedback_color)
-	my_canvas.text(str(points)+" points", x = 350, y = -350, font_size = 30)
-	my_canvas.text("level " + str(level), x = 350, y = -300, font_size = 30)
+	my_canvas.text(str(points)+" points", x = 350, y = -300, font_size = 30)
+	my_canvas.text("level " + str(level), x = 350, y = -250, font_size = 30)
 	if not correct:
 		my_canvas.text(answer, y = 150)
 	if not new:
