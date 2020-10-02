@@ -1,0 +1,10 @@
+trial,start_time,rt,correct,hint,fact_id,question,answer,hint,alpha
+1,2496.0,1109.0,True,False,1,hello,bonjour,b_ _ _ _ _r,0.3
+2,8468.0,2490.0,False,False,1,hello,bonjour,b_ _ _ _ _r,0.3
+3,11651.0,2279.0,True,True,1,hello,bonjour,b_ _ _ _ _r,0.349609375
+4,16544.0,1181.0,True,False,2,dog,chien,c_ _ _n,0.3
+5,19887.0,24269.0,False,False,2,dog,chien,c_ _ _n,0.3
+
+trial,start_time,rt,correct,hint,fact_id,question,answer,hint,alpha
+1,46773.0,41262.0,False,False,5,house,maison,m____n,0.3
+
