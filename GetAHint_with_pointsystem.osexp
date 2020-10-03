@@ -56,25 +56,43 @@ define inline_script Standard_trial
 	prompt = next_fact.question
 	answer = next_fact.answer
 	
-	# total possible nr. of points is 1800
-	# cost of hint is 5 * level
-	# points for correct answer = 50
-	if points < 400:
+	if points < 500:
 	    level = 1
-	elif points < 800:
+	elif points < 100:
 	    level = 2
-	elif points < 1200:
+	elif points < 1500:
 	    level = 3
-	elif points < 1600:
+	elif points < 2000:
 	    level = 4
-	else:
+	elif points < 2500:
 	    level = 5
+	elif points < 3500:
+	    level = 6
+	elif points < 4500:
+	    level = 7
+	elif points < 5500:
+	    level = 8
+	elif points < 6500:
+	    level = 9
+	else:
+	    level = 10
+	
+	def draw_score(level, points):
+		my_canvas.rect(-1,-361 ,502, 22, color='black', fill = False)
+		if level<=5:
+			points_in_level = points - (level-1)*500
+			my_canvas.rect(0,-360 ,points_in_level, 20, color='green', fill = True)
+		else:
+			points_in_level = points - 2500 - (level-6)*1000
+			my_canvas.rect(0,-360 ,round(points_in_level/2), 20, color='green', fill = True)
+		my_canvas.text(str(points)+" points", x = 350, y = -300, font_size = 30)
+		my_canvas.text("level " + str(level), x = 350, y = -250, font_size = 30)
+	
 	
 	# Show prompt
 	my_canvas = Canvas()
 	my_canvas.text(prompt, y = -100, font_size = 30)
-	my_canvas.text(str(points)+" points", x = 350, y = -350, font_size = 30)
-	my_canvas.text("level " + str(level), x = 350, y = -300, font_size = 30)
+	draw_score(level, points)
 	if new:
 		my_canvas.text(answer, y = -60, font_size = 20)
 	my_canvas.prepare()
@@ -113,8 +131,7 @@ define inline_script Standard_trial
 		# Update what's on screen
 		my_canvas.clear()
 		my_canvas.text(prompt, y = -100, font_size = 30)
-		my_canvas.text(str(points)+" points", x = 350, y = -350, font_size = 30)
-		my_canvas.text("level " + str(level), x = 350, y = -300, font_size = 30)
+		draw_score(level, points)
 		if new:
 			my_canvas.text(answer, y = -60, font_size = 20)
 		my_canvas.text(keyboard_response, y = 100)
@@ -132,12 +149,14 @@ define inline_script Standard_trial
 	# Show feedback
 	feedback_color = "green" if correct else "red"
 	my_canvas.text(keyboard_response, y = 100, color = feedback_color)
-	my_canvas.text(str(points)+" points", x = 350, y = -350, font_size = 30)
-	my_canvas.text("level " + str(level), x = 350, y = -300, font_size = 30)
+	draw_score(level, points)
 	if not correct:
 		my_canvas.text(answer, y = 150)
 	if not new:
-		points_gained = 50 if correct else 0
+		if level <=5:
+			points_gained = 50 if correct else 0
+		else:
+			points_gained = 100 if correct else 0		
 		points = points + points_gained
 		my_canvas.text("You gained " + str(points_gained) + " points", x = 0, y = 0, color = feedback_color)
 	my_canvas.prepare()
@@ -194,7 +213,7 @@ define inline_script learning_session1_setup
 	var.trial_num = 1
 	
 	# Settings
-	var.session_duration = 60000
+	var.session_duration = 10000
 	var.feedback_duration = 1200
 	var.inter_trial_interval = 200
 	
@@ -249,48 +268,49 @@ define inline_script present_trial
 	# total possible nr. of points is 1800
 	# cost of hint is 5 * level
 	# points for correct answer = 50
-	if points < 400:
+	if points < 500:
 	    level = 1
-	elif points < 800:
+	elif points < 100:
 	    level = 2
-	elif points < 1200:
+	elif points < 1500:
 	    level = 3
-	elif points < 1600:
+	elif points < 2000:
 	    level = 4
-	else:
+	elif points < 2500:
 	    level = 5
+	elif points < 3500:
+	    level = 6
+	elif points < 4500:
+	    level = 7
+	elif points < 5500:
+	    level = 8
+	elif points < 6500:
+	    level = 9
+	else:
+	    level = 10
+	
+	def draw_score(level, points):
+		my_canvas.rect(-1,-361 ,502, 22, color='black', fill = False)
+		if level<=5:
+			points_in_level = points - (level-1)*500
+			my_canvas.rect(0,-360 ,points_in_level, 20, color='green', fill = True)
+		else:
+			points_in_level = points - 2500 - (level-6)*1000
+			my_canvas.rect(0,-360 ,round(points_in_level/2), 20, color='green', fill = True)
+		my_canvas.text(str(points)+" points", x = 350, y = -300, font_size = 30)
+		my_canvas.text("level " + str(level), x = 350, y = -250, font_size = 30)
 	
 	
 	hint = next_fact.hint
 	hint_cost = level *5
 	hint_message = "Enter 1 to buy hint (which costs "+ str(hint_cost)+ " points)"
 	
-	def show_screen(prompt, points, level, hint_message, keyboard_response = None, new = False, answer = None):
-		my_canvas.clear()
-		my_canvas.text(prompt, y = -100, font_size = 30)
-		my_canvas.text(str(points)+" points", x = 350, y = -350, font_size = 30)
-		my_canvas.text("level " + str(level), x = 350, y = -300, font_size = 30)
-		if new:
-			my_canvas.text(answer, y = -60, font_size = 20)
-		else:
-			my_canvas.text(hint_message, y = -60, font_size = 20)
-		if keyboard_response is not None:
-			my_canvas.text(keyboard_response, y = 100)
-		my_canvas.prepare()
-		my_canvas.show()
-	
 	
 	
 	# Show prompt
 	my_canvas = Canvas()
-	#show_screen(prompt, points, level, hint_message, new, answer)
 	my_canvas.text(prompt, y = -100, font_size = 30)
-	#Coordinates: (0,0) is midden
-	my_canvas.rect(99,-361 ,402, 22, color='black', fill = False)
-	points_in_level = points - (level-1)*400
-	my_canvas.rect(100,-360 ,points_in_level, 20, color='green', fill = True)
-	my_canvas.text(str(points)+" points", x = 350, y = -300, font_size = 30)
-	my_canvas.text("level " + str(level), x = 350, y = -250, font_size = 30)
+	draw_score(level, points)
 	if new:
 		my_canvas.text(answer, y = -60, font_size = 20)
 	else:
@@ -331,8 +351,7 @@ define inline_script present_trial
 		# Update what's on screen
 		my_canvas.clear()
 		my_canvas.text(prompt, y = -100, font_size = 30)
-		my_canvas.text(str(points)+" points", x = 350, y = -300, font_size = 30)
-		my_canvas.text("level " + str(level), x = 350, y = -250, font_size = 30)	
+		draw_score(level, points)
 		if new:
 			my_canvas.text(answer, y = -60, font_size = 20)
 		else:
@@ -396,8 +415,7 @@ define inline_script present_trial
 			# Update what's on screen'
 			my_canvas.clear()
 			my_canvas.text(prompt, y = -100, font_size = 30)
-			my_canvas.text(str(points)+" points", x = 350, y = -300, font_size = 30)
-			my_canvas.text("level " + str(level), x = 350, y = -250, font_size = 30)
+			draw_score(level, points)
 			my_canvas.text(hint, y = -60, font_size = 20)
 			my_canvas.text(keyboard_response, y = 100)
 			my_canvas.prepare()
@@ -413,12 +431,14 @@ define inline_script present_trial
 	# Show feedback
 	feedback_color = "green" if correct else "red"
 	my_canvas.text(keyboard_response, y = 100, color = feedback_color)
-	my_canvas.text(str(points)+" points", x = 350, y = -300, font_size = 30)
-	my_canvas.text("level " + str(level), x = 350, y = -250, font_size = 30)
+	draw_score(level, points)
 	if not correct:
 		my_canvas.text(answer, y = 150)
 	if not new:
-		points_gained = 50 if correct else 0
+		if level <=5:
+			points_gained = 50 if correct else 0
+		else:
+			points_gained = 100 if correct else 0		
 		points = points + points_gained
 		my_canvas.text("You gained " + str(points_gained) + " points", x = 0, y = 0, color = feedback_color)
 	my_canvas.prepare()
