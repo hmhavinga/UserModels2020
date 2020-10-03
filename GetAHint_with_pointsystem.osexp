@@ -26,7 +26,7 @@ set font_size 24
 set font_italic no
 set font_family sans
 set font_bold yes
-set experiment_path "H:/Users/Hanna/Documents/Uni/Master/User Models/UserModels3-10-2020/UserModels2020-master"
+set experiment_path "H:/Users/Hanna/Documents/Uni/Master/User Models/OS"
 set disable_garbage_collection yes
 set description "The main experiment item"
 set coordinates uniform
@@ -227,7 +227,7 @@ define inline_script learning_session1_setup
 	var.trial_num = 1
 	
 	# Settings
-	var.session_duration = 5000
+	var.session_duration = 20000
 	var.feedback_duration = 1200
 	var.inter_trial_interval = 200
 	
@@ -683,8 +683,7 @@ define inline_script slimstampen_setup
 	
 	    # Model constants
 	    LOOKAHEAD_TIME = 15000
-	    # Lowered threshold from -0.8 to -1 (TODO: Find out whether this is a plausible value)
-	    FORGET_THRESHOLD = -1
+	    FORGET_THRESHOLD = -0.8
 	    DEFAULT_ALPHA = 0.3
 	    C = 0.25
 	    F = 1.0
@@ -693,7 +692,6 @@ define inline_script slimstampen_setup
 	        self.facts = []
 	        self.responses = []
 	
-	    
 	    def add_fact(self, fact):
 	        # type: (Fact) -> None
 	        """
@@ -906,7 +904,6 @@ define inline_script slimstampen_setup
 	        Cut off extremely long responses to keep the reaction time within reasonable bounds
 	        """
 	        rt = response.rt if response.correct else 60000
-	        rt = response.rt if (response.correct and not response.hint) else 1.25*response.rt if response.correct else 60000
 	        max_rt = self.get_max_reaction_time_for_fact(response.fact)
 	        return(min(rt, max_rt))
 	
@@ -974,6 +971,7 @@ define sequence trial_sequence_1
 	run Standard_trial always
 
 define loop while_there_is_time_left
+	set source_file ""
 	set source table
 	set repeat 1000
 	set order random
@@ -986,6 +984,7 @@ define loop while_there_is_time_left
 	run trial_sequence
 
 define loop while_there_is_time_left_1
+	set source_file ""
 	set source table
 	set repeat 1000
 	set order random
