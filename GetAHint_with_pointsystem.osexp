@@ -58,7 +58,7 @@ define inline_script Standard_trial
 	
 	if points < 500:
 	    level = 1
-	elif points < 100:
+	elif points < 1000:
 	    level = 2
 	elif points < 1500:
 	    level = 3
@@ -150,15 +150,28 @@ define inline_script Standard_trial
 	feedback_color = "green" if correct else "red"
 	my_canvas.text(keyboard_response, y = 100, color = feedback_color)
 	draw_score(level, points)
+	new_level = False
 	if not correct:
 		my_canvas.text(answer, y = 150)
 	if not new:
 		if level <=5:
-			points_gained = 50 if correct else 0
+			if correct:
+				points_gained = 50
+				if points % 500 >= 450:
+					new_level = True
+			else:
+				points_gained = 0
 		else:
-			points_gained = 100 if correct else 0		
+			if correct:
+				points_gained = 100 
+				if (points-500) % 1000 >= 900:
+					new_level = True
+			else:
+				points_gained =0	
 		points = points + points_gained
 		my_canvas.text("You gained " + str(points_gained) + " points", x = 0, y = 0, color = feedback_color)
+		if new_level:
+			my_canvas.text("Level " + str(level +1), x = 0, y = 150, font=('Arial',100), color = "yellow")
 	my_canvas.prepare()
 	my_canvas.show()
 	clock.sleep(var.feedback_duration)
@@ -213,7 +226,7 @@ define inline_script learning_session1_setup
 	var.trial_num = 1
 	
 	# Settings
-	var.session_duration = 10000
+	var.session_duration = 1000
 	var.feedback_duration = 1200
 	var.inter_trial_interval = 200
 	
@@ -236,7 +249,7 @@ define inline_script learning_session2_setup
 	var.trial_num = 1
 	
 	# Settings
-	var.session_duration = 100
+	var.session_duration = 60000
 	var.feedback_duration = 1200
 	var.inter_trial_interval = 200
 	
@@ -270,7 +283,7 @@ define inline_script present_trial
 	# points for correct answer = 50
 	if points < 500:
 	    level = 1
-	elif points < 100:
+	elif points < 1000:
 	    level = 2
 	elif points < 1500:
 	    level = 3
@@ -432,15 +445,28 @@ define inline_script present_trial
 	feedback_color = "green" if correct else "red"
 	my_canvas.text(keyboard_response, y = 100, color = feedback_color)
 	draw_score(level, points)
+	new_level = False
 	if not correct:
 		my_canvas.text(answer, y = 150)
 	if not new:
 		if level <=5:
-			points_gained = 50 if correct else 0
+			if correct:
+				points_gained = 50
+				if points % 500 >= 450:
+					new_level = True
+			else:
+				points_gained = 0
 		else:
-			points_gained = 100 if correct else 0		
+			if correct:
+				points_gained = 100 
+				if (points-500) % 1000 >= 900:
+					new_level = True
+			else:
+				points_gained =0	
 		points = points + points_gained
 		my_canvas.text("You gained " + str(points_gained) + " points", x = 0, y = 0, color = feedback_color)
+		if new_level:
+			my_canvas.text("Level " + str(level +1), x = 0, y = 150, font=('Arial',100), color = "yellow")
 	my_canvas.prepare()
 	my_canvas.show()
 	clock.sleep(var.feedback_duration)
