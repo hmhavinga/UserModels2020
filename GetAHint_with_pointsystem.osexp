@@ -214,7 +214,8 @@ define sketchpad instructions
 define inline_script learning_session1_setup
 	set description "Executes Python code"
 	___run__
-	var.block = "Hint"
+	var.cond = "Hint"
+	var.block  = 1
 	
 	# Start the clock
 	var.session_start_time = clock.time()
@@ -226,7 +227,7 @@ define inline_script learning_session1_setup
 	var.trial_num = 1
 	
 	# Settings
-	var.session_duration = 1000
+	var.session_duration = 5000
 	var.feedback_duration = 1200
 	var.inter_trial_interval = 200
 	
@@ -237,7 +238,8 @@ define inline_script learning_session1_setup
 define inline_script learning_session2_setup
 	set description "Executes Python code"
 	___run__
-	var.block = "No Hint"
+	var.cond = "No Hint"
+	var.block = 2
 	
 	# Start the clock
 	var.session_start_time = clock.time()
@@ -249,7 +251,7 @@ define inline_script learning_session2_setup
 	var.trial_num = 1
 	
 	# Settings
-	var.session_duration = 1000
+	var.session_duration = 5000
 	var.feedback_duration = 1200
 	var.inter_trial_interval = 200
 	
@@ -925,17 +927,22 @@ define inline_script slimstampen_setup
 	
 	        # Add column for rate of forgetting estimate after each observation
 	        dat["alpha"] = dat.apply(calc_rof, axis = 1)
+	        dat["cond"] = var.cond
 	        dat["block"] = var.block
 	        dat.drop(columns = "fact", inplace = True)
 	
 	        # Add trial number column
 	        dat.index.name = "trial"
 	        dat.index = dat.index + 1
+	        
 	
 	        # Save to CSV file if a path was specified, otherwise return the CSV-formatted output
 	        if path is not None:
 	            dat.to_csv(path, encoding="UTF-8")
 	            return(dat)
+	        
+	        if(var.block == 2):
+	            return(dat.to_csv(header = False))
 	        
 	        return(dat.to_csv())
 	__end__
