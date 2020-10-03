@@ -214,7 +214,7 @@ define sketchpad instructions
 define inline_script learning_session1_setup
 	set description "Executes Python code"
 	___run__
-	var.block = 1
+	var.block = "Hint"
 	
 	# Start the clock
 	var.session_start_time = clock.time()
@@ -237,7 +237,7 @@ define inline_script learning_session1_setup
 define inline_script learning_session2_setup
 	set description "Executes Python code"
 	___run__
-	var.block = 2
+	var.block = "No Hint"
 	
 	# Start the clock
 	var.session_start_time = clock.time()
@@ -249,7 +249,7 @@ define inline_script learning_session2_setup
 	var.trial_num = 1
 	
 	# Settings
-	var.session_duration = 60000
+	var.session_duration = 1000
 	var.feedback_duration = 1200
 	var.inter_trial_interval = 200
 	
@@ -661,11 +661,7 @@ define inline_script slimstampen_setup
 	facts = [Fact(1, "hello", "bonjour", "b_ _ _ _ _r"),
 			Fact(2, "dog", "chien", "c_ _ _n"),
 			Fact(3, "cat", "chat", "c_ _t"),
-			Fact(4, "computer", "ordinateur", "o_ _ _ _ _ _ _ _r"),
-			Fact(5, "house", "maison", "m____n"),
-			Fact(6, "car", "voiture", "v_____e"),
-			Fact(7, "fish", "poisson", "p_____n"),
-			Fact(8, "bottle", "bouteille", "b_______e")]
+			Fact(4, "computer", "ordinateur", "o_ _ _ _ _ _ _ _r")]
 	
 	for fact in facts:
 		m.add_fact(fact)
@@ -929,6 +925,7 @@ define inline_script slimstampen_setup
 	
 	        # Add column for rate of forgetting estimate after each observation
 	        dat["alpha"] = dat.apply(calc_rof, axis = 1)
+	        dat["block"] = var.block
 	        dat.drop(columns = "fact", inplace = True)
 	
 	        # Add trial number column
@@ -955,7 +952,7 @@ define inline_script slimstampen_setup2
 			Fact(8, "bottle", "bouteille", "b_______e")]
 	
 	for fact in facts:
-		m.add_fact(fact)
+		m2.add_fact(fact)
 	__end__
 	set _prepare ""
 
@@ -970,7 +967,6 @@ define sequence trial_sequence_1
 	run Standard_trial always
 
 define loop while_there_is_time_left
-	set source_file ""
 	set source table
 	set repeat 1000
 	set order random
@@ -983,7 +979,6 @@ define loop while_there_is_time_left
 	run trial_sequence
 
 define loop while_there_is_time_left_1
-	set source_file ""
 	set source table
 	set repeat 1000
 	set order random
