@@ -28,7 +28,7 @@ with open('wordlist_easy.txt') as wordlist_easy:
 
 
 # Read in hard facts from file
-with open('wordlist_hard.txt') as wordlist_hard:
+with open('wordlist_hard_new.txt') as wordlist_hard:
 	reader = csv.reader(wordlist_hard, delimiter=',')
 	for row in reader:
 		fact_id = fact_id + 1
