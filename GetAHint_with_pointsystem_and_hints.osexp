@@ -691,11 +691,15 @@ define inline_script slimstampen_setup
 	
 	for fact in hard_facts_1:
 		m.add_fact(fact)
+		
+	# Shuffle the list of facts such that easy and hard facts are presented in a mixed order.
+	m.shuffle_facts()
 	__end__
 	___prepare__
 	from __future__ import division
 	import math
 	import pandas as pd
+	import random
 	from collections import namedtuple
 	
 	Fact = namedtuple("Fact", "fact_id, question, answer, easy_or_hard")
@@ -728,6 +732,12 @@ define inline_script slimstampen_setup
 	
 	        self.facts.append(fact)
 	
+	    def shuffle_facts(self):
+	        # type: None -> None
+	        """
+	        Shuffle the list of facts such that easy and hard facts are presented in a mixed order.
+	        """
+	        random.shuffle(self.facts)
 	
 	    def register_response(self, response):
 	        # type: (Response) -> None
@@ -970,7 +980,7 @@ define inline_script slimstampen_setup
 	
 	easy_facts = [Fact(fact_id=1, question='käsi', answer='hand', easy_or_hard='easy'), Fact(fact_id=2, question='pää', answer='head', easy_or_hard='easy'), Fact(fact_id=3, question='pieni', answer='small', easy_or_hard='easy'), Fact(fact_id=4, question='tänään', answer='today', easy_or_hard='easy'), Fact(fact_id=5, question='ruma', answer='ugly', easy_or_hard='easy'), Fact(fact_id=6, question='vesi', answer='water', easy_or_hard='easy'), Fact(fact_id=7, question='vuosi', answer='year', easy_or_hard='easy'), Fact(fact_id=8, question='kolme', answer='three', easy_or_hard='easy'), Fact(fact_id=9, question='tunnin', answer='hour', easy_or_hard='easy'), Fact(fact_id=10, question='sormi', answer='finger', easy_or_hard='easy'), Fact(fact_id=11, question='neljä', answer='four', easy_or_hard='easy'), Fact(fact_id=12, question='viisi', answer='five', easy_or_hard='easy'), Fact(fact_id=13, question='helppo', answer='easy', easy_or_hard='easy'), Fact(fact_id=14, question='hyvä', answer='good', easy_or_hard='easy'), Fact(fact_id=15, question='ruumis', answer='body', easy_or_hard='easy'), Fact(fact_id=16, question='olut', answer='beer', easy_or_hard='easy'), Fact(fact_id=17, question='kello', answer='clock', easy_or_hard='easy'), Fact(fact_id=18, question='isä', answer='father', easy_or_hard='easy'), Fact(fact_id=19, question='paita', answer='shirt', easy_or_hard='easy'), Fact(fact_id=20, question='tyttö', answer='girl', easy_or_hard='easy'), Fact(fact_id=21, question='lumi', answer='snow', easy_or_hard='easy'), Fact(fact_id=22, question='pilvi', answer='cloud', easy_or_hard='easy'), Fact(fact_id=23, question='äiti', answer='mother', easy_or_hard='easy'), Fact(fact_id=24, question='kenkä', answer='shoe', easy_or_hard='easy'), Fact(fact_id=25, question='nainen', answer='woman', easy_or_hard='easy'), Fact(fact_id=26, question='sade', answer='rain', easy_or_hard='easy'), Fact(fact_id=27, question='vaimo', answer='wife', easy_or_hard='easy'), Fact(fact_id=28, question='lapsi', answer='child', easy_or_hard='easy'), Fact(fact_id=29, question='lyhyt', answer='short', easy_or_hard='easy'), Fact(fact_id=30, question='puhdas', answer='clean', easy_or_hard='easy'), Fact(fact_id=31, question='pitkä', answer='tall', easy_or_hard='easy'), Fact(fact_id=32, question='kiltti', answer='kind', easy_or_hard='easy'), Fact(fact_id=33, question='vahva', answer='strong', easy_or_hard='easy'), Fact(fact_id=34, question='korkea', answer='high', easy_or_hard='easy'), Fact(fact_id=35, question='ylpeä', answer='proud', easy_or_hard='easy'), Fact(fact_id=36, question='kova', answer='hard', easy_or_hard='easy')]
 	
-	hard_facts = [Fact(fact_id=37, question='ohjelmoija', answer='programmer', easy_or_hard='hard'), Fact(fact_id=38, question='myyntimies', answer='salesman', easy_or_hard='hard'), Fact(fact_id=39, question='huomenna', answer='tomorrow', easy_or_hard='hard'), Fact(fact_id=40, question='opettaja', answer='teacher', easy_or_hard='hard'), Fact(fact_id=41, question='työntekijä', answer='employee', easy_or_hard='hard'), Fact(fact_id=42, question='läakäri', answer='doctor', easy_or_hard='hard'), Fact(fact_id=43, question='tyttöystävä', answer='girlfriend', easy_or_hard='hard'), Fact(fact_id=44, question='tietokone', answer='computer', easy_or_hard='hard'), Fact(fact_id=45, question='kylpyhuone', answer='bathroom', easy_or_hard='hard'), Fact(fact_id=46, question='kohtelias', answer='polite', easy_or_hard='hard'), Fact(fact_id=47, question='rehellinen', answer='honest', easy_or_hard='hard'), Fact(fact_id=48, question='kuuluisa', answer='famous', easy_or_hard='hard'), Fact(fact_id=49, question='mielenkiintoista', answer='interesting', easy_or_hard='hard'), Fact(fact_id=50, question='ärsyttävä', answer='annoying', easy_or_hard='hard'), Fact(fact_id=51, question='taitava', answer='clever', easy_or_hard='hard'), Fact(fact_id=52, question='kuitenkin', answer='however', easy_or_hard='hard'), Fact(fact_id=53, question='yhdessä', answer='together', easy_or_hard='hard'), Fact(fact_id=54, question='täydellinen', answer='complete', easy_or_hard='hard'), Fact(fact_id=55, question='järjestelmä', answer='system', easy_or_hard='hard'), Fact(fact_id=56, question='erityistä', answer='special', easy_or_hard='hard'), Fact(fact_id=57, question='todennäköinen', answer='probable', easy_or_hard='hard'), Fact(fact_id=58, question='äkillinen', answer='sudden', easy_or_hard='hard'), Fact(fact_id=59, question='sanakirja', answer='dictionary', easy_or_hard='hard'), Fact(fact_id=60, question='kansakunta', answer='nation', easy_or_hard='hard'), Fact(fact_id=61, question='menetelmä', answer='method', easy_or_hard='hard'), Fact(fact_id=62, question='kokeilu', answer='experiment', easy_or_hard='hard'), Fact(fact_id=63, question='suunnittelu', answer='design', easy_or_hard='hard'), Fact(fact_id=64, question='kaksikymmentä', answer='twenty', easy_or_hard='hard'), Fact(fact_id=65, question='jompikumpi', answer='either', easy_or_hard='hard'), Fact(fact_id=66, question='lämpötila', answer='temperature', easy_or_hard='hard'), Fact(fact_id=67, question='teollisuus', answer='industry', easy_or_hard='hard'), Fact(fact_id=68, question='luonnollinen', answer='natural', easy_or_hard='hard'), Fact(fact_id=69, question='nykyaikainen', answer='modern', easy_or_hard='hard'), Fact(fact_id=70, question='hyönteinen', answer='insect', easy_or_hard='hard'), Fact(fact_id=71, question='välttämätön', answer='necessary', easy_or_hard='hard'), Fact(fact_id=72, question='pikemminkin', answer='rather', easy_or_hard='hard')]
+	hard_facts = [Fact(fact_id=37, question='rauhoittaa', answer='calm', easy_or_hard='hard'), Fact(fact_id=38, question='kiireinen', answer='busy', easy_or_hard='hard'), Fact(fact_id=39, question='väsynyt', answer='tired', easy_or_hard='hard'), Fact(fact_id=40, question='sateinen', answer='rainy', easy_or_hard='hard'), Fact(fact_id=41, question='onnellinen', answer='happy', easy_or_hard='hard'), Fact(fact_id=42, question='aurinkoinen', answer='sunny', easy_or_hard='hard'), Fact(fact_id=43, question='suuttunut', answer='angry', easy_or_hard='hard'), Fact(fact_id=44, question='naudanliha', answer='beef', easy_or_hard='hard'), Fact(fact_id=45, question='sairaanhoitaja', answer='nurse', easy_or_hard='hard'), Fact(fact_id=46, question='kalastaa', answer='fish', easy_or_hard='hard'), Fact(fact_id=47, question='sianliha', answer='pork', easy_or_hard='hard'), Fact(fact_id=48, question='vasikanliha', answer='veal', easy_or_hard='hard'), Fact(fact_id=49, question='seitsemän', answer='seven', easy_or_hard='hard'), Fact(fact_id=50, question='kahdeksan', answer='eight', easy_or_hard='hard'), Fact(fact_id=51, question='yhdeksän', answer='nine', easy_or_hard='hard'), Fact(fact_id=52, question='vesisade', answer='rain', easy_or_hard='hard'), Fact(fact_id=53, question='vuorovesi', answer='tide', easy_or_hard='hard'), Fact(fact_id=54, question='kurjenmiekka', answer='iris', easy_or_hard='hard'), Fact(fact_id=55, question='päivänkakkara', answer='daisy', easy_or_hard='hard'), Fact(fact_id=56, question='paatsama', answer='holly', easy_or_hard='hard'), Fact(fact_id=57, question='maljakko', answer='vase', easy_or_hard='hard'), Fact(fact_id=58, question='avaruusolento', answer='alien', easy_or_hard='hard'), Fact(fact_id=59, question='kantapää', answer='heel', easy_or_hard='hard'), Fact(fact_id=60, question='selkäranka', answer='spine', easy_or_hard='hard'), Fact(fact_id=61, question='kateellisuus', answer='envy', easy_or_hard='hard'), Fact(fact_id=62, question='syyllisyys', answer='guilt', easy_or_hard='hard'), Fact(fact_id=63, question='näyttelijä', answer='actor', easy_or_hard='hard'), Fact(fact_id=64, question='runoilija', answer='poet', easy_or_hard='hard'), Fact(fact_id=65, question='hienostelija', answer='snob', easy_or_hard='hard'), Fact(fact_id=66, question='hiljainen', answer='quiet', easy_or_hard='hard'), Fact(fact_id=67, question='suorasanainen', answer='blunt', easy_or_hard='hard'), Fact(fact_id=68, question='untuvapeitto', answer='duvet', easy_or_hard='hard'), Fact(fact_id=69, question='kuivausrumpu', answer='drier', easy_or_hard='hard'), Fact(fact_id=70, question='haisunäätä', answer='skunk', easy_or_hard='hard'), Fact(fact_id=71, question='tuoremehu', answer='juice', easy_or_hard='hard'), Fact(fact_id=72, question='hiekkaranta', answer='beach', easy_or_hard='hard')]
 	__end__
 
 define inline_script slimstampen_setup2
@@ -983,6 +993,9 @@ define inline_script slimstampen_setup2
 	
 	for fact in hard_facts_2:
 		m2.add_fact(fact)
+		
+	# Shuffle the list of facts such that easy and hard facts are presented in a mixed order.
+	m2.shuffle_facts()
 	__end__
 	set _prepare ""
 
