@@ -35,8 +35,8 @@ with open('wordlist_hard_24.txt') as wordlist_hard:
 		hard_facts.append(Fact(fact_id, row[0], (row[1])[1:], "hard"))
 
 ### This is how the fact-lists in the experiment were generated
-# print(easy_facts)
-# print(hard_facts)
+print(easy_facts)
+print(hard_facts)
 
 # make two arrays of easy facts, each containing one half of the easy facts
 random.shuffle(easy_facts)
