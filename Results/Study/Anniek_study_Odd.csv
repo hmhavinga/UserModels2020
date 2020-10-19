@@ -1,0 +1,211 @@
+trial,start_time,rt,correct,hint,fact_id,question,answer,easy_or_hard,alpha,cond,block
+1,120954.0,5979.0,True,False,29,sianliha,pork,hard,0.3,Hint,1
+2,130447.0,2755.0,True,False,29,sianliha,pork,hard,0.3,Hint,1
+3,136248.0,1975.0,True,False,2,pää,head,easy,0.3,Hint,1
+4,141504.0,1411.0,True,False,2,pää,head,easy,0.3,Hint,1
+5,145735.0,2383.0,True,False,7,hyvä,good,easy,0.3,Hint,1
+6,150883.0,2589.0,True,False,22,lyhyt,short,easy,0.3,Hint,1
+7,156728.0,6086.0,True,False,7,hyvä,good,easy,0.3,Hint,1
+8,166720.0,1924.0,True,False,22,lyhyt,short,easy,0.3,Hint,1
+9,171599.0,1682.0,True,False,23,ylpeä,proud,easy,0.3,Hint,1
+10,177368.0,2138.0,True,False,24,lapsi,child,easy,0.3,Hint,1
+11,182967.0,2309.0,True,False,23,ylpeä,proud,easy,0.3,Hint,1
+12,188433.0,1333.0,True,False,24,lapsi,child,easy,0.3,Hint,1
+13,192668.0,5360.0,True,False,29,sianliha,pork,hard,0.349609375,Hint,1
+14,200619.0,2874.0,True,False,2,pää,head,easy,0.324609375,Hint,1
+15,206032.0,2243.0,True,False,7,hyvä,good,easy,0.28789062499999996,Hint,1
+16,210502.0,1644.0,True,False,26,kiireinen,busy,hard,0.3,Hint,1
+17,215004.0,1984.0,True,False,10,kenkä,shoe,easy,0.3,Hint,1
+18,219826.0,1915.0,True,False,26,kiireinen,busy,hard,0.3,Hint,1
+19,226173.0,3254.0,True,False,10,kenkä,shoe,easy,0.3,Hint,1
+20,232431.0,1495.0,True,False,22,lyhyt,short,easy,0.250390625,Hint,1
+21,236653.0,2200.0,True,False,29,sianliha,pork,hard,0.34921875,Hint,1
+22,241359.0,6988.0,True,False,23,ylpeä,proud,easy,0.349609375,Hint,1
+23,251072.0,2087.0,True,False,24,lapsi,child,easy,0.250390625,Hint,1
+24,257688.0,1695.0,True,False,15,talo,house,easy,0.3,Hint,1
+25,262004.0,1322.0,True,False,2,pää,head,easy,0.275,Hint,1
+26,265962.0,1126.0,True,False,15,talo,house,easy,0.3,Hint,1
+27,270237.0,2621.0,True,False,26,kiireinen,busy,hard,0.324609375,Hint,1
+28,275564.0,1941.0,True,False,10,kenkä,shoe,easy,0.250390625,Hint,1
+29,279992.0,1786.0,True,False,21,pilvi,cloud,easy,0.3,Hint,1
+30,284377.0,6081.0,False,False,23,ylpeä,proud,easy,0.39921874999999996,Hint,1
+31,292682.0,2557.0,False,False,21,pilvi,cloud,easy,0.3,Hint,1
+32,295372.0,2651.0,True,True,21,pilvi,cloud,easy,0.349609375,Hint,1
+33,300853.0,2056.0,True,False,34,maljakko,vase,hard,0.3,Hint,1
+34,305167.0,1413.0,True,False,17,vesi,water,easy,0.3,Hint,1
+35,308957.0,6211.0,False,False,34,maljakko,vase,hard,0.3,Hint,1
+36,315549.0,2754.0,True,True,34,maljakko,vase,hard,0.349609375,Hint,1
+37,322022.0,1873.0,True,False,17,vesi,water,easy,0.3,Hint,1
+38,332835.0,1791.0,True,False,23,ylpeä,proud,easy,0.398828125,Hint,1
+39,337614.0,4498.0,True,False,15,talo,house,easy,0.349609375,Hint,1
+40,344751.0,2822.0,True,False,29,sianliha,pork,hard,0.374609375,Hint,1
+41,350020.0,inf,False,False,21,pilvi,cloud,easy,0.39921874999999996,Hint,1
+42,356274.0,2154.0,False,True,21,pilvi,cloud,easy,0.4488281249999999,Hint,1
+43,361094.0,5742.0,True,False,26,kiireinen,busy,hard,0.33124999999999993,Hint,1
+44,369534.0,3750.0,False,False,34,maljakko,vase,hard,0.39921874999999996,Hint,1
+45,375893.0,2238.0,False,False,7,hyvä,good,easy,0.3374999999999999,Hint,1
+46,378393.0,1035.0,True,True,7,hyvä,good,easy,0.33710937499999993,Hint,1
+47,381661.0,3484.0,False,False,15,talo,house,easy,0.39374999999999993,Hint,1
+48,387654.0,1914.0,False,False,21,pilvi,cloud,easy,0.49296874999999984,Hint,1
+49,389796.0,2015.0,True,True,21,pilvi,cloud,easy,0.5425781249999999,Hint,1
+50,395173.0,4417.0,False,False,17,vesi,water,easy,0.349609375,Hint,1
+51,400478.0,3573.0,True,True,17,vesi,water,easy,0.39296875,Hint,1
+52,407575.0,6824.0,False,False,21,pilvi,cloud,easy,0.5671875,Hint,1
+53,414701.0,1554.0,True,True,21,pilvi,cloud,easy,0.592578125,Hint,1
+54,419081.0,5658.0,False,False,34,maljakko,vase,hard,0.4488281249999999,Hint,1
+55,427218.0,1732.0,True,False,23,ylpeä,proud,easy,0.34921875,Hint,1
+56,432077.0,1693.0,True,False,21,pilvi,cloud,easy,0.58046875,Hint,1
+57,438023.0,6738.0,False,False,15,talo,house,easy,0.4433593749999999,Hint,1
+58,445029.0,2873.0,True,True,15,talo,house,easy,0.45546874999999987,Hint,1
+59,451774.0,1355.0,True,False,34,maljakko,vase,hard,0.44843749999999993,Hint,1
+60,455871.0,1407.0,True,False,29,sianliha,pork,hard,0.36796875000000007,Hint,1
+61,460413.0,2124.0,True,False,21,pilvi,cloud,easy,0.5558593749999999,Hint,1
+62,465239.0,7697.0,True,False,17,vesi,water,easy,0.394140625,Hint,1
+63,475921.0,7022.0,False,False,26,kiireinen,busy,hard,0.3808593749999999,Hint,1
+64,483149.0,6009.0,True,True,26,kiireinen,busy,hard,0.40546874999999993,Hint,1
+65,492181.0,1527.0,True,False,15,talo,house,easy,0.4550781249999999,Hint,1
+66,496844.0,2327.0,True,False,21,pilvi,cloud,easy,0.5374999999999999,Hint,1
+67,502269.0,2314.0,True,False,34,maljakko,vase,hard,0.44804687499999996,Hint,1
+68,507247.0,3332.0,True,False,7,hyvä,good,easy,0.3687499999999999,Hint,1
+69,513061.0,2464.0,True,False,38,kateellisuus,envy,hard,0.3,Hint,1
+70,519863.0,1585.0,True,False,17,vesi,water,easy,0.39375000000000004,Hint,1
+71,525779.0,2173.0,True,False,38,kateellisuus,envy,hard,0.3,Hint,1
+72,531045.0,5619.0,True,False,21,pilvi,cloud,easy,0.5378906249999998,Hint,1
+73,539452.0,4337.0,True,False,15,talo,house,easy,0.47343749999999996,Hint,1
+74,546737.0,1976.0,True,False,26,kiireinen,busy,hard,0.40507812499999996,Hint,1
+75,552192.0,7087.0,True,False,34,maljakko,vase,hard,0.46875,Hint,1
+76,561832.0,1367.0,True,False,29,sianliha,pork,hard,0.32539062500000016,Hint,1
+77,565656.0,2125.0,True,False,25,rauhoittaa,calm,hard,0.3,Hint,1
+78,570203.0,1908.0,True,False,21,pilvi,cloud,easy,0.5335937499999999,Hint,1
+79,574755.0,1209.0,True,False,25,rauhoittaa,calm,hard,0.3,Hint,1
+80,578566.0,1186.0,True,False,15,talo,house,easy,0.473046875,Hint,1
+81,582092.0,2812.0,True,False,38,kateellisuus,envy,hard,0.324609375,Hint,1
+82,588469.0,1813.0,True,False,7,hyvä,good,easy,0.36835937499999993,Hint,1
+83,592518.0,3789.0,True,False,34,maljakko,vase,hard,0.484765625,Hint,1
+84,598973.0,6249.0,False,False,24,lapsi,child,easy,0.29999999999999993,Hint,1
+85,605319.0,6411.0,False,True,24,lapsi,child,easy,0.3238281249999999,Hint,1
+86,620378.0,1661.0,True,False,17,vesi,water,easy,0.39335937500000007,Hint,1
+87,625063.0,1535.0,True,False,21,pilvi,cloud,easy,0.5324218749999998,Hint,1
+88,629052.0,2809.0,True,False,25,rauhoittaa,calm,hard,0.33710937499999993,Hint,1
+89,634374.0,3780.0,True,False,34,maljakko,vase,hard,0.534375,Hint,1
+90,640676.0,1136.0,True,False,15,talo,house,easy,0.4234375,Hint,1
+91,644290.0,9696.0,False,False,26,kiireinen,busy,hard,0.415625,Hint,1
+92,654077.0,1769.0,True,True,26,kiireinen,busy,hard,0.417578125,Hint,1
+93,658215.0,2610.0,True,False,34,maljakko,vase,hard,0.547265625,Hint,1
+94,663918.0,inf,False,False,22,lyhyt,short,easy,0.29999999999999993,Hint,1
+95,670268.0,6125.0,False,True,22,lyhyt,short,easy,0.3121093749999999,Hint,1
+96,677878.0,2035.0,True,False,38,kateellisuus,envy,hard,0.275,Hint,1
+97,682273.0,1446.0,True,False,34,maljakko,vase,hard,0.546875,Hint,1
+98,687293.0,3977.0,True,False,21,pilvi,cloud,easy,0.5374999999999998,Hint,1
+99,693720.0,1677.0,True,False,10,kenkä,shoe,easy,0.20078125,Hint,1
+100,697461.0,1197.0,True,False,2,pää,head,easy,0.22539062500000004,Hint,1
+101,700832.0,2037.0,True,False,25,rauhoittaa,calm,hard,0.2875,Hint,1
+102,705015.0,3029.0,True,False,23,ylpeä,proud,easy,0.374609375,Hint,1
+103,710589.0,3756.0,True,False,34,maljakko,vase,hard,0.570703125,Hint,1
+104,716736.0,1991.0,True,False,7,hyvä,good,easy,0.36796874999999996,Hint,1
+
+1,788490.0,1919.0,True,False,42,aurinkoinen,sunny,hard,0.3,No Hint,2
+2,795655.0,1472.0,True,False,42,aurinkoinen,sunny,hard,0.3,No Hint,2
+3,800185.0,2089.0,True,False,20,paita,shirt,easy,0.3,No Hint,2
+4,805088.0,1368.0,True,False,20,paita,shirt,easy,0.3,No Hint,2
+5,808892.0,1375.0,True,False,18,kolme,three,easy,0.3,No Hint,2
+6,812798.0,1387.0,True,False,6,viisi,five,easy,0.3,No Hint,2
+7,816405.0,1644.0,True,False,18,kolme,three,easy,0.3,No Hint,2
+8,820694.0,1068.0,True,False,6,viisi,five,easy,0.3,No Hint,2
+9,824002.0,1493.0,True,False,16,pieni,small,easy,0.3,No Hint,2
+10,828451.0,1436.0,True,False,19,kello,clock,easy,0.3,No Hint,2
+11,832263.0,1208.0,True,False,16,pieni,small,easy,0.3,No Hint,2
+12,835788.0,inf,True,False,19,kello,clock,easy,0.3,No Hint,2
+13,840634.0,1663.0,True,False,42,aurinkoinen,sunny,hard,0.250390625,No Hint,2
+14,844817.0,1603.0,True,False,31,yhdeksän,nine,hard,0.3,No Hint,2
+15,849059.0,1659.0,True,False,20,paita,shirt,easy,0.250390625,No Hint,2
+16,859073.0,1562.0,True,False,31,yhdeksän,nine,hard,0.3,No Hint,2
+17,862745.0,9103.0,True,False,18,kolme,three,easy,0.349609375,No Hint,2
+18,876344.0,3129.0,False,False,6,viisi,five,easy,0.349609375,No Hint,2
+19,881409.0,1943.0,True,False,16,pieni,small,easy,0.250390625,No Hint,2
+20,886176.0,8037.0,False,False,19,kello,clock,easy,0.349609375,No Hint,2
+21,895682.0,1467.0,True,False,45,seitsemän,seven,hard,0.3,No Hint,2
+22,899623.0,3471.0,True,False,47,päivänkakkara,daisy,hard,0.3,No Hint,2
+23,906587.0,1431.0,False,False,45,seitsemän,seven,hard,0.3,No Hint,2
+24,910119.0,1392.0,True,False,47,päivänkakkara,daisy,hard,0.3,No Hint,2
+25,914316.0,inf,False,False,18,kolme,three,easy,0.39921874999999996,No Hint,2
+26,922239.0,4889.0,True,False,31,yhdeksän,nine,hard,0.349609375,No Hint,2
+27,929269.0,6098.0,True,False,6,viisi,five,easy,0.39921874999999996,No Hint,2
+28,937912.0,inf,True,False,19,kello,clock,easy,0.39921874999999996,No Hint,2
+29,943159.0,3963.0,True,False,18,kolme,three,easy,0.4488281249999999,No Hint,2
+30,949536.0,2375.0,True,False,12,vaimo,wife,easy,0.3,No Hint,2
+31,954029.0,2591.0,True,False,9,lumi,snow,easy,0.3,No Hint,2
+32,958971.0,3208.0,False,False,12,vaimo,wife,easy,0.3,No Hint,2
+33,963645.0,2702.0,True,False,9,lumi,snow,easy,0.3,No Hint,2
+34,968453.0,1914.0,True,False,6,viisi,five,easy,0.398828125,No Hint,2
+35,972676.0,2309.0,True,False,18,kolme,three,easy,0.4374999999999999,No Hint,2
+36,977379.0,2240.0,True,False,45,seitsemän,seven,hard,0.26289062500000004,No Hint,2
+37,984013.0,inf,True,False,19,kello,clock,easy,0.4488281249999999,No Hint,2
+38,990150.0,2442.0,True,False,47,päivänkakkara,daisy,hard,0.273046875,No Hint,2
+39,995497.0,2621.0,True,False,31,yhdeksän,nine,hard,0.34375,No Hint,2
+40,1000734.0,2499.0,False,False,19,kello,clock,easy,0.46171874999999996,No Hint,2
+41,1005547.0,1470.0,True,False,13,pitkä,tall,easy,0.3,No Hint,2
+42,1009874.0,2758.0,True,False,12,vaimo,wife,easy,0.34101562499999993,No Hint,2
+43,1014952.0,2655.0,True,False,13,pitkä,tall,easy,0.3,No Hint,2
+44,1020255.0,1289.0,True,False,9,lumi,snow,easy,0.250390625,No Hint,2
+45,1023569.0,2077.0,True,False,18,kolme,three,easy,0.4371093749999999,No Hint,2
+46,1027868.0,2014.0,True,False,6,viisi,five,easy,0.3984375,No Hint,2
+47,1031992.0,1649.0,False,False,19,kello,clock,easy,0.46210937499999993,No Hint,2
+48,1035953.0,2218.0,True,False,48,hiekkaranta,beach,hard,0.3,No Hint,2
+49,1040648.0,1483.0,True,False,30,vasikanliha,veal,hard,0.3,No Hint,2
+50,1045252.0,1246.0,True,False,48,hiekkaranta,beach,hard,0.3,No Hint,2
+51,1049033.0,1383.0,True,False,30,vasikanliha,veal,hard,0.3,No Hint,2
+52,1054887.0,1772.0,True,False,39,väsynyt,tired,hard,0.3,No Hint,2
+53,1059406.0,1729.0,True,False,12,vaimo,wife,easy,0.3398437499999999,No Hint,2
+54,1063433.0,3086.0,False,False,39,väsynyt,tired,hard,0.3,No Hint,2
+55,1068712.0,6559.0,False,False,13,pitkä,tall,easy,0.349609375,No Hint,2
+56,1076746.0,2238.0,True,False,19,kello,clock,easy,0.46171874999999996,No Hint,2
+57,1081524.0,3055.0,True,False,18,kolme,three,easy,0.45703125,No Hint,2
+58,1086886.0,3193.0,False,False,31,yhdeksän,nine,hard,0.39335937499999996,No Hint,2
+59,1091553.0,1518.0,False,False,11,kaula,neck,easy,0.3,No Hint,2
+60,1096663.0,8418.0,False,False,48,hiekkaranta,beach,hard,0.349609375,No Hint,2
+61,1106549.0,1506.0,True,False,11,kaula,neck,easy,0.3,No Hint,2
+62,1110304.0,5696.0,True,False,30,vasikanliha,veal,hard,0.349609375,No Hint,2
+63,1118547.0,4325.0,True,False,13,pitkä,tall,easy,0.39921874999999996,No Hint,2
+64,1125328.0,2316.0,False,False,39,väsynyt,tired,hard,0.349609375,No Hint,2
+65,1130118.0,2799.0,True,False,6,viisi,five,easy,0.416015625,No Hint,2
+66,1135288.0,4234.0,False,False,18,kolme,three,easy,0.4925781250000001,No Hint,2
+67,1142127.0,2951.0,False,False,31,yhdeksän,nine,hard,0.40703124999999996,No Hint,2
+68,1147598.0,3832.0,True,False,19,kello,clock,easy,0.511328125,No Hint,2
+69,1155495.0,8044.0,False,False,48,hiekkaranta,beach,hard,0.39921874999999996,No Hint,2
+70,1165006.0,5387.0,False,False,13,pitkä,tall,easy,0.4488281249999999,No Hint,2
+71,1172966.0,3276.0,True,False,19,kello,clock,easy,0.5609375000000001,No Hint,2
+72,1178694.0,6928.0,True,False,18,kolme,three,easy,0.49296875000000007,No Hint,2
+73,1190081.0,3096.0,True,False,19,kello,clock,easy,0.5667968750000001,No Hint,2
+74,1195882.0,4106.0,True,False,30,vasikanliha,veal,hard,0.39921874999999996,No Hint,2
+75,1202782.0,2425.0,True,False,11,kaula,neck,easy,0.262109375,No Hint,2
+76,1208003.0,1761.0,True,False,13,pitkä,tall,easy,0.42421874999999987,No Hint,2
+77,1212360.0,1977.0,False,False,39,väsynyt,tired,hard,0.39921874999999996,No Hint,2
+78,1217543.0,2293.0,True,False,48,hiekkaranta,beach,hard,0.398828125,No Hint,2
+79,1222611.0,1615.0,True,False,19,kello,clock,easy,0.5414062500000001,No Hint,2
+80,1226954.0,2251.0,True,False,12,vaimo,wife,easy,0.2964843749999999,No Hint,2
+81,1231388.0,1514.0,True,False,6,viisi,five,easy,0.36640625000000004,No Hint,2
+82,1234987.0,3408.0,False,False,30,vasikanliha,veal,hard,0.41289062499999996,No Hint,2
+83,1240586.0,inf,True,False,31,yhdeksän,nine,hard,0.431640625,No Hint,2
+84,1246201.0,1851.0,False,False,18,kolme,three,easy,0.5425781250000001,No Hint,2
+85,1252422.0,3584.0,True,False,39,väsynyt,tired,hard,0.412109375,No Hint,2
+86,1260851.0,7461.0,True,False,18,kolme,three,easy,0.5578125000000002,No Hint,2
+87,1271367.0,4382.0,False,False,20,paita,shirt,easy,0.29999999999999993,No Hint,2
+88,1277223.0,2137.0,True,False,19,kello,clock,easy,0.5410156250000001,No Hint,2
+89,1282714.0,1679.0,False,False,42,aurinkoinen,sunny,hard,0.29999999999999993,No Hint,2
+90,1285868.0,2327.0,True,False,18,kolme,three,easy,0.5574218750000002,No Hint,2
+91,1290473.0,4580.0,False,False,47,päivänkakkara,daisy,hard,0.32265625,No Hint,2
+92,1297740.0,2183.0,True,False,13,pitkä,tall,easy,0.4214843749999999,No Hint,2
+93,1303162.0,5328.0,False,False,30,vasikanliha,veal,hard,0.41328124999999993,No Hint,2
+94,1309957.0,3320.0,True,False,48,hiekkaranta,beach,hard,0.43046874999999996,No Hint,2
+95,1317164.0,2395.0,True,False,31,yhdeksän,nine,hard,0.43125,No Hint,2
+96,1322205.0,14444.0,True,False,39,väsynyt,tired,hard,0.4125,No Hint,2
+97,1339494.0,inf,True,False,18,kolme,three,easy,0.5695312500000002,No Hint,2
+98,1350769.0,1431.0,True,False,19,kello,clock,easy,0.49140625000000016,No Hint,2
+99,1354701.0,2012.0,True,False,16,pieni,small,easy,0.20078125,No Hint,2
+100,1360960.0,3591.0,True,False,48,hiekkaranta,beach,hard,0.43632812499999996,No Hint,2
+101,1367026.0,1786.0,True,False,18,kolme,three,easy,0.5605468750000001,No Hint,2
+102,1371036.0,4949.0,False,False,45,seitsemän,seven,hard,0.3125,No Hint,2
+103,1377457.0,2489.0,True,False,47,päivänkakkara,daisy,hard,0.3121093749999999,No Hint,2
+104,1383203.0,3758.0,True,False,30,vasikanliha,veal,hard,0.4628906249999999,No Hint,2
+
