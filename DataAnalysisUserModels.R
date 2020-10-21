@@ -1,8 +1,39 @@
 # Set working directory to source file location first! (under session)
 
+# Reading in multiple data files (TO DO)
+# https://monashbioinformaticsplatform.github.io/2015-09-28-rbioinformatics-intro-r/03-loops-R.html
+
+# Initialize vectors for values
+# After the for loop, create a dataframe with these vectors as columns in order to perform t-tests
+nr_of_correct_total <- c()
+
+nr_of_trials_hints <- c()
+nr_of_trials_no_hints <- c()
+nr_of_unique_words_hints <- c()
+nr_of_unique_words_no_hints <- c()
+
+# distinction between words seen with hints and words seen without hints
+nr_of_correct_hints_all <- c()
+nr_of_correct_no_hints_all <- c()
+nr_of_correct_not_seen_all <- c()
+
+# distinction between short and long words
+nr_of_correct_short <- c()
+nr_of_correct_long <- c()
+
+# distinction based both hints/no hints and short/long
+nr_of_correct_hints_short <- c()
+nr_of_correct_no_hints_short <- c()
+nr_of_correct_not_seen_short <- c()
+
+nr_of_correct_hints_long <- c()
+nr_of_correct_no_hints_long <- c()
+nr_of_correct_not_seen_long <- c()
+
+### CREATE A FORLOOP THAT STARTS FROM HERE
+
 studyFile <- read.csv("Data/Training/Han-FullTrial-Even.csv", header = TRUE, sep = ",", dec = ".")
 testFile <- read.csv("Data/Testing/Han_test.csv", header = TRUE, sep = ",", dec = ".")
-
 
 #Clean white-space
 
@@ -22,13 +53,37 @@ if (nrow(Study[which(Study$cond == "Hint" & Study$block == 1),]) == 0) {
 #Get unique fact IDs per condition for this person:
 hint_trials = Study[Study$cond == 'Hint',]
 nohint_trials = Study[Study$cond == 'No Hint',]
+
+nr_of_trials_hints <- append(nr_of_trials_hints, nrow(hint_trials))
+nr_of_trials_no_hints <- append(nr_of_trials_no_hints, nrow(nohint_trials))
+
 unique_fact_ids_hints = unique(hint_trials$fact_id)
 unique_fact_ids_nohints = unique(nohint_trials$fact_id)
 
-## divide words from test in 3 categories (seen with hint, seen with no hint, not seen during study)
-testNoHint <- testFile[testFile$fact_id %in% unique_fact_ids_nohints,]
-testHint <- testFile[testFile$fact_id %in% unique_fact_ids_hints,]
+nr_of_unique_words_hints <- append(nr_of_unique_words_hints, length(unique_fact_ids_hints))
+nr_of_unique_words_no_hints <- append(nr_of_unique_words_no_hints, length(unique_fact_ids_nohints))
 
+## divide words from test in correct and incorrect
+testCorrect <- testFile[testFile$correct == "yes",]
+testIncorrect <- testFile[testFile$correct == "no",]
 
-#testCorrect <- testFile[testFile$correct == "yes",]
+nr_of_correct_total <- append(nr_of_correct_total, nrow(testCorrect))
+
+## divide correct words from test in 3 categories (seen with hint, seen with no hint, not seen during study)
+correctNoHint <- testCorrect[testCorrect$fact_id %in% unique_fact_ids_nohints,]
+correctHint <- testCorrect[testCorrect$fact_id %in% unique_fact_ids_hints,]
+correctNotSeen <- testCorrect[!(testCorrect$fact_id %in% unique_fact_ids_hints) & !(testCorrect$fact_id %in% unique_fact_ids_nohints),]
+
+nr_of_correct_no_hints_all <- append(nr_of_correct_no_hints_all, nrow(correctNoHint))
+nr_of_correct_hints_all <- append(nr_of_correct_hints_all, nrow(correctHint))
+nr_of_correct_not_seen_all <- append(nr_of_correct_not_seen_all, nrow(correctNotSeen))
+
+## divide correct words from test in short vs long
+correctShort <- testCorrect[testCorrect$easy_or_hard =="easy",]
+correctLong <- testCorrect[testCorrect$easy_or_hard =="hard",]
+
+nr_of_correct_short <- append(nr_of_correct_short, nrow(correctShort))
+nr_of_correct_long <- append(nr_of_correct_long, nrow(correctLong))
+
+## divide correct words from test in both hints vs no hints vs not seen and short vs long
 
