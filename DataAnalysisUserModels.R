@@ -12,23 +12,27 @@ nr_of_trials_no_hints <- c()
 nr_of_unique_words_hints <- c()
 nr_of_unique_words_no_hints <- c()
 
+nr_of_hints_bought <- c()
+boolean_hint_condition_first <- c()
+
 # distinction between words seen with hints and words seen without hints
-nr_of_correct_hints_all <- c()
-nr_of_correct_no_hints_all <- c()
-nr_of_correct_not_seen_all <- c()
+nr_of_correct_hints <- c()
+nr_of_correct_no_hints <- c()
+nr_of_correct_not_seen <- c()
 
 # distinction between short and long words
 nr_of_correct_short <- c()
 nr_of_correct_long <- c()
 
 # distinction based both hints/no hints and short/long
-nr_of_correct_hints_short <- c()
-nr_of_correct_no_hints_short <- c()
-nr_of_correct_not_seen_short <- c()
+# Oke toch niet
+# nr_of_correct_hints_short <- c()
+# nr_of_correct_no_hints_short <- c()
+# nr_of_correct_not_seen_short <- c()
 
-nr_of_correct_hints_long <- c()
-nr_of_correct_no_hints_long <- c()
-nr_of_correct_not_seen_long <- c()
+# nr_of_correct_hints_long <- c()
+# nr_of_correct_no_hints_long <- c()
+# nr_of_correct_not_seen_long <- c()
 
 ### CREATE A FORLOOP THAT STARTS FROM HERE
 
@@ -49,6 +53,7 @@ if (nrow(Study[which(Study$cond == "Hint" & Study$block == 1),]) == 0) {
   HintFirst = TRUE
 }
 
+boolean_hint_condition_first <- append(boolean_hint_condition_first, HintFirst)
 
 #Get unique fact IDs per condition for this person:
 hint_trials = Study[Study$cond == 'Hint',]
@@ -63,6 +68,10 @@ unique_fact_ids_nohints = unique(nohint_trials$fact_id)
 nr_of_unique_words_hints <- append(nr_of_unique_words_hints, length(unique_fact_ids_hints))
 nr_of_unique_words_no_hints <- append(nr_of_unique_words_no_hints, length(unique_fact_ids_nohints))
 
+## Check how many hints were bought
+hint_bought_trials <- Study[Study$hint == 'True',] 
+nr_of_hints_bought <- append(nr_of_hints_bought, nrow(hint_bought_trials))
+
 ## divide words from test in correct and incorrect
 testCorrect <- testFile[testFile$correct == "yes",]
 testIncorrect <- testFile[testFile$correct == "no",]
@@ -74,9 +83,9 @@ correctNoHint <- testCorrect[testCorrect$fact_id %in% unique_fact_ids_nohints,]
 correctHint <- testCorrect[testCorrect$fact_id %in% unique_fact_ids_hints,]
 correctNotSeen <- testCorrect[!(testCorrect$fact_id %in% unique_fact_ids_hints) & !(testCorrect$fact_id %in% unique_fact_ids_nohints),]
 
-nr_of_correct_no_hints_all <- append(nr_of_correct_no_hints_all, nrow(correctNoHint))
-nr_of_correct_hints_all <- append(nr_of_correct_hints_all, nrow(correctHint))
-nr_of_correct_not_seen_all <- append(nr_of_correct_not_seen_all, nrow(correctNotSeen))
+nr_of_correct_no_hints <- append(nr_of_correct_no_hints, nrow(correctNoHint))
+nr_of_correct_hints <- append(nr_of_correct_hints, nrow(correctHint))
+nr_of_correct_not_seen <- append(nr_of_correct_not_seen, nrow(correctNotSeen))
 
 ## divide correct words from test in short vs long
 correctShort <- testCorrect[testCorrect$easy_or_hard =="easy",]
@@ -85,5 +94,15 @@ correctLong <- testCorrect[testCorrect$easy_or_hard =="hard",]
 nr_of_correct_short <- append(nr_of_correct_short, nrow(correctShort))
 nr_of_correct_long <- append(nr_of_correct_long, nrow(correctLong))
 
-## divide correct words from test in both hints vs no hints vs not seen and short vs long
+### FOR-LOOP ENDS HERE
+
+### Make dataframe
+dat <- data.frame(boolean_hint_condition_first, nr_of_hints_bought, 
+                  nr_of_trials_hints, nr_of_trials_no_hints, 
+                  nr_of_unique_words_hints, nr_of_unique_words_no_hints,
+                  nr_of_correct_total, nr_of_correct_hints, nr_of_correct_no_hints, nr_of_correct_not_seen,
+                  nr_of_correct_short, nr_of_correct_long)
+
+### Perform t-tests
+
 
