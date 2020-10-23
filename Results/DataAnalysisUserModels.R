@@ -17,6 +17,8 @@ nr_of_unique_words_hints <- c()
 nr_of_unique_words_no_hints <- c()
 
 nr_of_hints_bought <- c()
+nr_of_hints_bought_unique_words <- c()
+nr_of_correct_hint_bought <- c()
 boolean_hint_condition_first <- c()
 
 # distinction between words seen with hints and words seen without hints
@@ -77,10 +79,6 @@ for (study_file in study_files) {
   nr_of_unique_words_hints <- append(nr_of_unique_words_hints, length(unique_fact_ids_hints))
   nr_of_unique_words_no_hints <- append(nr_of_unique_words_no_hints, length(unique_fact_ids_nohints))
 
-  ## Check how many hints were bought
-  hint_bought_trials <- Study[Study$hint == 'True',] 
-  nr_of_hints_bought <- append(nr_of_hints_bought, nrow(hint_bought_trials))
-
   ## divide words from test in correct and incorrect
   testCorrect <- testFile[testFile$correct == "yes",]
   testIncorrect <- testFile[testFile$correct == "no",]
@@ -102,15 +100,25 @@ for (study_file in study_files) {
 
   nr_of_correct_short <- append(nr_of_correct_short, nrow(correctShort))
   nr_of_correct_long <- append(nr_of_correct_long, nrow(correctLong))
+  
+  ## Check how many hints were bought
+  hint_bought_trials <- Study[Study$hint == 'True',]
+  nr_of_hints_bought <- append(nr_of_hints_bought, nrow(hint_bought_trials))
+  hint_fact_ids <- unique(hint_bought_trials$fact_id)
+  correctHintBought <- testCorrect[testCorrect$fact_id %in% hint_fact_ids,]
+  
+  ## check for how many unique words hints were bought, and how many of these words were answered correctly during test
+  nr_of_hints_bought_unique_words <- append(nr_of_hints_bought_unique_words, length(hint_fact_ids))
+  nr_of_correct_hint_bought <- append(nr_of_correct_hint_bought, nrow(correctHintBought))
 
 }
 
 ### Make dataframe
-dat <- data.frame(boolean_hint_condition_first, nr_of_hints_bought, 
-                  nr_of_trials_hints, nr_of_trials_no_hints, 
+dat <- data.frame(boolean_hint_condition_first, nr_of_trials_hints, nr_of_trials_no_hints, 
                   nr_of_unique_words_hints, nr_of_unique_words_no_hints,
                   nr_of_correct_total, nr_of_correct_hints, nr_of_correct_no_hints, nr_of_correct_not_seen,
-                  nr_of_correct_short, nr_of_correct_long)
+                  nr_of_correct_short, nr_of_correct_long,
+                  nr_of_hints_bought, nr_of_hints_bought_unique_words, nr_of_correct_hint_bought)
 
 ### Perform t-tests
 
