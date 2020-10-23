@@ -1,7 +1,8 @@
 # Set working directory to source file location first! (under session)
 
-# Reading in multiple data files (TO DO)
-# https://monashbioinformaticsplatform.github.io/2015-09-28-rbioinformatics-intro-r/03-loops-R.html
+# http://www.sthda.com/english/wiki/paired-samples-t-test-in-r
+# install.packages("dplyr")
+# library("dplyr")
 
 study_files <- list.files(path = "Study", full.names = TRUE, pattern = "csv")
 test_files <- list.files(path = "Test", full.names = TRUE, pattern = "csv")
@@ -39,8 +40,6 @@ nr_of_correct_long <- c()
 # nr_of_correct_hints_long <- c()
 # nr_of_correct_no_hints_long <- c()
 # nr_of_correct_not_seen_long <- c()
-
-### CREATE A FORLOOP THAT STARTS FROM HERE
 
 results_index = 1
 
@@ -122,4 +121,14 @@ dat <- data.frame(boolean_hint_condition_first, nr_of_trials_hints, nr_of_trials
 
 ### Perform t-tests
 
+## Difference between number of correct answers for short vs long words
+t.test(dat$nr_of_correct_short, dat$nr_of_correct_long, paired = TRUE, alternative = "two.sided")
 
+## Difference between number of correct answers between conditions
+t.test(dat$nr_of_correct_hints, dat$nr_of_correct_no_hints, paired = TRUE, alternative = "two.sided")
+
+## Difference between number of trials between conditions
+t.test(dat$nr_of_trials_hints, dat$nr_of_trials_no_hints, paired = TRUE, alternative = "two.sided")
+
+## Difference between number of unique words seen between conditions
+t.test(dat$nr_of_unique_words_hints, dat$nr_of_unique_words_no_hints, paired = TRUE, alternative = "two.sided")
