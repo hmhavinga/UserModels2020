@@ -4,8 +4,8 @@
 # install.packages("dplyr")
 # library("dplyr")
 
-install.packages("ggplot2")
-library("ggplot2")
+# install.packages("ggplot2")
+# library("ggplot2")
 
 study_files <- list.files(path = "Study", full.names = TRUE, pattern = "csv")
 test_files <- list.files(path = "Test", full.names = TRUE, pattern = "csv")
@@ -38,15 +38,15 @@ nr_of_correct_long <- c()
 ratio_correct_vs_seen_hints <- c()
 ratio_correct_vs_seen_no_hints <- c()
 
-# distinction based both hints/no hints and short/long
-# Oke toch niet
-# nr_of_correct_hints_short <- c()
-# nr_of_correct_no_hints_short <- c()
-# nr_of_correct_not_seen_short <- c()
+# Distinction based on both hints/no hints and short/long
+# We probably won't use this but just in case
+nr_of_correct_hints_short <- c()
+nr_of_correct_no_hints_short <- c()
+nr_of_correct_not_seen_short <- c()
 
-# nr_of_correct_hints_long <- c()
-# nr_of_correct_no_hints_long <- c()
-# nr_of_correct_not_seen_long <- c()
+nr_of_correct_hints_long <- c()
+nr_of_correct_no_hints_long <- c()
+nr_of_correct_not_seen_long <- c()
 
 results_index = 1
 
@@ -75,8 +75,8 @@ for (study_file in study_files) {
   boolean_hint_condition_first <- append(boolean_hint_condition_first, HintFirst)
 
   #Get unique fact IDs per condition for this person:
-  hint_trials = Study[Study$cond == 'Hint',]
-  nohint_trials = Study[Study$cond == 'No Hint',]
+  hint_trials <- Study[Study$cond == 'Hint',]
+  nohint_trials <- Study[Study$cond == 'No Hint',]
 
   nr_of_trials_hints <- append(nr_of_trials_hints, nrow(hint_trials))
   nr_of_trials_no_hints <- append(nr_of_trials_no_hints, nrow(nohint_trials))
@@ -101,6 +101,18 @@ for (study_file in study_files) {
   nr_of_correct_no_hints <- append(nr_of_correct_no_hints, nrow(correctNoHint))
   nr_of_correct_hints <- append(nr_of_correct_hints, nrow(correctHint))
   nr_of_correct_not_seen <- append(nr_of_correct_not_seen, nrow(correctNotSeen))
+  
+  correctNoHint_short <- correctNoHint[correntNoHint$easy_or_hard =="easy",]
+  correctHint_short <- correctHint[correctHint$easy_or_hard =="easy",]
+  
+  correctNoHint_long <- correctNoHint[correntNoHint$easy_or_hard =="hard",]
+  correctHint_long <- correctHint[correctHint$easy_or_hard =="hard",]
+  
+  nr_of_correct_no_hints_short <- append(nr_of_correct_no_hints_short, nrow(correctNoHint_short) )
+  nr_of_correct_hints_short <- append(nr_of_correct_hints_short, nrow(correctHint_short))
+  
+  nr_of_correct_no_hints_long <- append(nr_of_correct_no_hints_long, nrow(correctNoHint_long) )
+  nr_of_correct_hints_long <- append(nr_of_correct_hints_long, nrow(correctHint_long))
   
   ratio_correct_vs_seen_hints <- append(ratio_correct_vs_seen_hints, nrow(correctHint) / length(unique_fact_ids_hints))
   ratio_correct_vs_seen_no_hints <- append(ratio_correct_vs_seen_no_hints, nrow(correctNoHint) / length(unique_fact_ids_nohints))
@@ -134,9 +146,13 @@ dat <- data.frame(boolean_hint_condition_first, nr_of_trials_hints, nr_of_trials
 ### Perform t-tests and make plots
 
 ## Difference between number of correct answers for short vs long words
+## In absolute number of words
+
+mean(nr_of_correct_short)
+mean(nr_of_correct_long)
+
 t.test(dat$nr_of_correct_short, dat$nr_of_correct_long, paired = TRUE, alternative = "two.sided")
 
-## In absolute number of words
 short_long <- rbind(nr_of_correct_short, nr_of_correct_long)
 barplot(short_long, ylim = c(0,20), beside = TRUE, col = c("green2", "purple"), 
         main = "Recall of short words versus long words", ylab = "Nr of correct answers",
@@ -147,6 +163,11 @@ barplot(short_long, ylim = c(0,20), beside = TRUE, col = c("green2", "purple"),
 #barplot(dat$nr_of_correct_short, col=rainbow(9))
 
 ## In a percentage
+mean(nr_of_correct_short) / 4.8 * 10
+mean(nr_of_correct_long) / 4.8 * 10
+
+t.test((nr_of_correct_short / 4.8 * 10), (nr_of_correct_long / 4.8 * 10), paired = TRUE, alternative = "two.sided")
+
 short_long_percentage <- ((short_long / 4.8) * 10 )
 barplot(short_long_percentage, ylim = c(0,45), beside = TRUE, col = c("green2", "purple"), 
         main = "Recall of short words versus long words", ylab = "Percentage of correct answers",
@@ -155,6 +176,9 @@ barplot(short_long_percentage, ylim = c(0,45), beside = TRUE, col = c("green2", 
                       "Subject 8", "Subject 9") )
 
 ## Difference between number of correct answers between conditions
+mean(nr_of_correct_hints)
+mean(nr_of_correct_no_hints)
+
 t.test(dat$nr_of_correct_hints, dat$nr_of_correct_no_hints, paired = TRUE, alternative = "two.sided")
 
 ## In absolute number of words
@@ -166,6 +190,11 @@ barplot(hints_nohints, ylim = c(0,27), beside = TRUE, col = c("red2", "blue3"),
                       "Subject 8", "Subject 9") )
 
 ## In a percentage
+mean(nr_of_correct_hints)  / 4.8 * 10
+mean(nr_of_correct_no_hints)  / 4.8 * 10
+
+t.test((nr_of_correct_hints / 4.8 * 10), (nr_of_correct_no_hints / 4.8 * 10), paired = TRUE, alternative = "two.sided")
+
 hints_nohints_percentage <- ((hints_nohints / 4.8) * 10 )
 barplot(hints_nohints_percentage, ylim = c(0,54), beside = TRUE, col = c("red2", "blue3"), 
         main = "Recall of words studied with hints versus without hints", ylab = "Percentage of correct answers",
@@ -175,6 +204,9 @@ barplot(hints_nohints_percentage, ylim = c(0,54), beside = TRUE, col = c("red2",
 
 
 ## Difference between number of trials between conditions
+mean(nr_of_trials_hints)
+mean(nr_of_trials_no_hints)
+
 t.test(dat$nr_of_trials_hints, dat$nr_of_trials_no_hints, paired = TRUE, alternative = "two.sided")
 
 trials_hints_nohints <- rbind(nr_of_trials_hints, nr_of_trials_no_hints)
@@ -185,6 +217,9 @@ barplot(trials_hints_nohints, ylim = c(0,170), beside = TRUE, col = c("magenta3"
                       "Subject 8", "Subject 9") )
 
 ## Difference between number of unique words seen between conditions
+mean(nr_of_unique_words_hints)
+mean(nr_of_unique_words_no_hints)
+
 t.test(dat$nr_of_unique_words_hints, dat$nr_of_unique_words_no_hints, paired = TRUE, alternative = "two.sided")
 
 words_hints_nohints <- rbind(nr_of_unique_words_hints, nr_of_unique_words_no_hints)
@@ -195,11 +230,17 @@ barplot(words_hints_nohints, ylim = c(0,35), beside = TRUE, col = c("deepskyblue
                       "Subject 8", "Subject 9") )
 
 ## Difference between ratio of (words correct)/(words seen) per condition
+mean(ratio_correct_vs_seen_hints)
+mean(ratio_correct_vs_seen_no_hints)
+
 t.test(ratio_correct_vs_seen_hints, ratio_correct_vs_seen_no_hints, paired = TRUE, alternative = "two.sided")
 
 ratio_hints_nohints <- rbind(ratio_correct_vs_seen_hints, ratio_correct_vs_seen_no_hints)
-barplot(ratio_hints_nohints, ylim = c(0,1.1), beside = TRUE, col = c( "mediumaquamarine", "tomato2"), 
+barplot(ratio_hints_nohints, ylim = c(0,1.1), beside = TRUE, col = c("red2", "blue3"), 
         main = "Ratio of correct words / seen words", ylab = "Ratio correct / seen",
         legend.text = c("studied with hints", "studied without hints"), 
         names.arg = c("Subject 1", "Subject 2", "Subject 3", "Subject 4", "Subject 5", "Subject 6", "Subject 7",
                       "Subject 8", "Subject 9") )
+
+# c( "mediumaquamarine", "tomato2")
+
