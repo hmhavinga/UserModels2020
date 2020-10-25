@@ -102,10 +102,10 @@ for (study_file in study_files) {
   nr_of_correct_hints <- append(nr_of_correct_hints, nrow(correctHint))
   nr_of_correct_not_seen <- append(nr_of_correct_not_seen, nrow(correctNotSeen))
   
-  correctNoHint_short <- correctNoHint[correntNoHint$easy_or_hard =="easy",]
+  correctNoHint_short <- correctNoHint[correctNoHint$easy_or_hard =="easy",]
   correctHint_short <- correctHint[correctHint$easy_or_hard =="easy",]
   
-  correctNoHint_long <- correctNoHint[correntNoHint$easy_or_hard =="hard",]
+  correctNoHint_long <- correctNoHint[correctNoHint$easy_or_hard =="hard",]
   correctHint_long <- correctHint[correctHint$easy_or_hard =="hard",]
   
   nr_of_correct_no_hints_short <- append(nr_of_correct_no_hints_short, nrow(correctNoHint_short) )
