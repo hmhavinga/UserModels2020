@@ -1,4 +1,4 @@
-studyFile <- read.csv(file = "Thomas_study", header = TRUE, sep = ",", dec = ".")
+studyFile <- read.csv(file = "Thomas_study.csv", header = TRUE, sep = ",", dec = ".")
 
 # Initialize vectors for values
 # After the for loop, create a dataframe with these vectors as columns in order to perform t-tests
