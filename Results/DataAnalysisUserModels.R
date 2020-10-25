@@ -143,6 +143,13 @@ dat <- data.frame(boolean_hint_condition_first, nr_of_trials_hints, nr_of_trials
                   nr_of_correct_short, nr_of_correct_long,
                   nr_of_hints_bought, nr_of_hints_bought_unique_words, nr_of_correct_hint_bought)
 
+## mean number of hints bought
+mean(nr_of_hints_bought)
+mean(nr_of_hints_bought) * 9 / 7 #without participants who didn't buy hints
+mean(append(nr_of_hints_bought, 21)) # including participant that didn't do test yet
+mean(append(nr_of_hints_bought, 21))  * 10 / 8 #without participants who didn't buy hints
+
+
 ### Perform t-tests and make plots
 
 ## Difference between number of correct answers for short vs long words
@@ -243,4 +250,6 @@ barplot(ratio_hints_nohints, ylim = c(0,1.1), beside = TRUE, col = c("red2", "bl
                       "Subject 8", "Subject 9") )
 
 # c( "mediumaquamarine", "tomato2")
+
+
 
