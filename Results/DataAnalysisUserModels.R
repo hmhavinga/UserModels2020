@@ -4,6 +4,9 @@
 # install.packages("dplyr")
 # library("dplyr")
 
+install.packages("ggplot2")
+library("ggplot2")
+
 study_files <- list.files(path = "Study", full.names = TRUE, pattern = "csv")
 test_files <- list.files(path = "Test", full.names = TRUE, pattern = "csv")
 
@@ -31,6 +34,10 @@ nr_of_correct_not_seen <- c()
 nr_of_correct_short <- c()
 nr_of_correct_long <- c()
 
+## Difference between ratio of (words correct)/(words seen) per condition
+ratio_correct_vs_seen_hints <- c()
+ratio_correct_vs_seen_no_hints <- c()
+
 # distinction based both hints/no hints and short/long
 # Oke toch niet
 # nr_of_correct_hints_short <- c()
@@ -42,6 +49,8 @@ nr_of_correct_long <- c()
 # nr_of_correct_not_seen_long <- c()
 
 results_index = 1
+
+
 
 for (study_file in study_files) {
   studyFile <- read.csv(file = study_file, header = TRUE, sep = ",", dec = ".")
@@ -92,6 +101,9 @@ for (study_file in study_files) {
   nr_of_correct_no_hints <- append(nr_of_correct_no_hints, nrow(correctNoHint))
   nr_of_correct_hints <- append(nr_of_correct_hints, nrow(correctHint))
   nr_of_correct_not_seen <- append(nr_of_correct_not_seen, nrow(correctNotSeen))
+  
+  ratio_correct_vs_seen_hints <- append(ratio_correct_vs_seen_hints, nrow(correctHint) / length(unique_fact_ids_hints))
+  ratio_correct_vs_seen_no_hints <- append(ratio_correct_vs_seen_no_hints, nrow(correctNoHint) / length(unique_fact_ids_nohints))
 
   ## divide correct words from test in short vs long
   correctShort <- testCorrect[testCorrect$easy_or_hard =="easy",]
@@ -119,16 +131,56 @@ dat <- data.frame(boolean_hint_condition_first, nr_of_trials_hints, nr_of_trials
                   nr_of_correct_short, nr_of_correct_long,
                   nr_of_hints_bought, nr_of_hints_bought_unique_words, nr_of_correct_hint_bought)
 
-### Perform t-tests
+### Perform t-tests and make plots
 
 ## Difference between number of correct answers for short vs long words
 t.test(dat$nr_of_correct_short, dat$nr_of_correct_long, paired = TRUE, alternative = "two.sided")
 
+## In absolute number of words
+short_long <- rbind(nr_of_correct_short, nr_of_correct_long)
+barplot(short_long, ylim = c(0,20), beside = TRUE, col = c("green2", "purple"), 
+        main = "Recall of short versus long words", ylab = "Nr of correct answers",
+        legend.text = c("short", "long"), 
+        names.arg = c("Subject 1", "Subject 2", "Subject 3", "Subject 4", "Subject 5", "Subject 6", "Subject 7",
+                      "Subject 8", "Subject 9") )
+
+#barplot(dat$nr_of_correct_short, col=rainbow(9))
+
+## In a percentage
+short_long_percentage <- ((short_long / 4.8) * 10 )
+barplot(short_long_percentage, ylim = c(0,45), beside = TRUE, col = c("green2", "purple"), 
+        main = "Recall of short versus long words", ylab = "Percentage of correct answers",
+        legend.text = c("short", "long"), 
+        names.arg = c("Subject 1", "Subject 2", "Subject 3", "Subject 4", "Subject 5", "Subject 6", "Subject 7",
+                      "Subject 8", "Subject 9") )
+
 ## Difference between number of correct answers between conditions
 t.test(dat$nr_of_correct_hints, dat$nr_of_correct_no_hints, paired = TRUE, alternative = "two.sided")
+
+## In absolute number of words
+hints_nohints <- rbind(nr_of_correct_hints, nr_of_correct_no_hints)
+barplot(hints_nohints, ylim = c(0,27), beside = TRUE, col = c("red2", "blue3"), 
+        main = "Recall of words studied with versus without hints", ylab = "Nr of correct answers",
+        legend.text = c("with hints", "without hints"), 
+        names.arg = c("Subject 1", "Subject 2", "Subject 3", "Subject 4", "Subject 5", "Subject 6", "Subject 7",
+                      "Subject 8", "Subject 9") )
+
+## In a percentage
+hints_nohints_percentage <- ((hints_nohints / 4.8) * 10 )
+barplot(hints_nohints_percentage, ylim = c(0,54), beside = TRUE, col = c("red2", "blue3"), 
+        main = "Recall of words studied with versus without hints", ylab = "Percentage of correct answers",
+        legend.text = c("with hints", "without hints"), 
+        names.arg = c("Subject 1", "Subject 2", "Subject 3", "Subject 4", "Subject 5", "Subject 6", "Subject 7",
+                      "Subject 8", "Subject 9") )
+
 
 ## Difference between number of trials between conditions
 t.test(dat$nr_of_trials_hints, dat$nr_of_trials_no_hints, paired = TRUE, alternative = "two.sided")
 
 ## Difference between number of unique words seen between conditions
 t.test(dat$nr_of_unique_words_hints, dat$nr_of_unique_words_no_hints, paired = TRUE, alternative = "two.sided")
+
+## Difference between ratio of (words correct)/(words seen) per condition
+t.test(ratio_correct_vs_seen_hints, ratio_correct_vs_seen_no_hints, paired = TRUE, alternative = "two.sided")
+
+
