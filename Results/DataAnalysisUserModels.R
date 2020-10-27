@@ -102,10 +102,10 @@ for (study_file in study_files) {
   nr_of_correct_hints <- append(nr_of_correct_hints, nrow(correctHint))
   nr_of_correct_not_seen <- append(nr_of_correct_not_seen, nrow(correctNotSeen))
   
-  correctNoHint_short <- correctNoHint[correntNoHint$easy_or_hard =="easy",]
+  correctNoHint_short <- correctNoHint[correctNoHint$easy_or_hard =="easy",]
   correctHint_short <- correctHint[correctHint$easy_or_hard =="easy",]
   
-  correctNoHint_long <- correctNoHint[correntNoHint$easy_or_hard =="hard",]
+  correctNoHint_long <- correctNoHint[correctNoHint$easy_or_hard =="hard",]
   correctHint_long <- correctHint[correctHint$easy_or_hard =="hard",]
   
   nr_of_correct_no_hints_short <- append(nr_of_correct_no_hints_short, nrow(correctNoHint_short) )
@@ -142,6 +142,13 @@ dat <- data.frame(boolean_hint_condition_first, nr_of_trials_hints, nr_of_trials
                   nr_of_correct_total, nr_of_correct_hints, nr_of_correct_no_hints, nr_of_correct_not_seen,
                   nr_of_correct_short, nr_of_correct_long,
                   nr_of_hints_bought, nr_of_hints_bought_unique_words, nr_of_correct_hint_bought)
+
+## mean number of hints bought
+mean(nr_of_hints_bought)
+mean(nr_of_hints_bought) * 9 / 7 #without participants who didn't buy hints
+mean(append(nr_of_hints_bought, 21)) # including participant that didn't do test yet
+mean(append(nr_of_hints_bought, 21))  * 10 / 8 #without participants who didn't buy hints
+
 
 ### Perform t-tests and make plots
 
@@ -243,4 +250,34 @@ barplot(ratio_hints_nohints, ylim = c(0,1.1), beside = TRUE, col = c("red2", "bl
                       "Subject 8", "Subject 9") )
 
 # c( "mediumaquamarine", "tomato2")
+
+## Difference between number of correct answers for short words between hint vs no hint conditions
+mean(nr_of_correct_hints_short)
+mean(nr_of_correct_no_hints_short)
+
+t.test(nr_of_correct_hints_short, nr_of_correct_no_hints_short, paired = TRUE, alternative = "two.sided")
+
+## In absolute number of words
+hints_nohints_short <- rbind(nr_of_correct_hints_short, nr_of_correct_no_hints_short)
+barplot(hints_nohints_short, ylim = c(0,15), beside = TRUE, col = c( "mediumaquamarine", "tomato2"), 
+        main = "Recall of SHORT words studied with hints versus without hints", ylab = "Nr of correct answers",
+        legend.text = c("with hints", "without hints"), 
+        names.arg = c("Subject 1", "Subject 2", "Subject 3", "Subject 4", "Subject 5", "Subject 6", "Subject 7",
+                      "Subject 8", "Subject 9") )
+
+## Difference between number of correct answers for long words between hint vs no hint conditions
+mean(nr_of_correct_hints_long)
+mean(nr_of_correct_no_hints_long)
+
+t.test(nr_of_correct_hints_long, nr_of_correct_no_hints_long, paired = TRUE, alternative = "two.sided")
+
+## In absolute number of words
+hints_nohints_long <- rbind(nr_of_correct_hints_long, nr_of_correct_no_hints_long)
+barplot(hints_nohints_long, ylim = c(0,15), beside = TRUE, col = c( "mediumaquamarine", "tomato2"), 
+        main = "Recall of LONG words studied with hints versus without hints", ylab = "Nr of correct answers",
+        legend.text = c("with hints", "without hints"), 
+        names.arg = c("Subject 1", "Subject 2", "Subject 3", "Subject 4", "Subject 5", "Subject 6", "Subject 7",
+                      "Subject 8", "Subject 9") )
+
+
 
